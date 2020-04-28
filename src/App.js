@@ -5,7 +5,7 @@ import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
-import Signin from './components/Signin/Signin';
+import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Particles from 'react-particles-js';
 import Clarifai from 'clarifai';
@@ -34,25 +34,11 @@ class App extends Component {
     this.state = {
       input: '',
       imageURL: '',
-      box: {},
       boxes: [],
       route: 'login',
       isLoggedIn: false,
     };
   }
-
-  calculateFaceLocation = (data) => {
-    const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
-    const image = document.getElementById('inputImage');
-    const width = Number(image.width);
-    const height = Number(image.height);
-    return {
-      leftCol: clarifaiFace.left_col * width,
-      topRow: clarifaiFace.top_row * height,
-      rightCol: width - clarifaiFace.right_col * width,
-      bottomRow: height - clarifaiFace.bottom_row * height,
-    };
-  };
 
   calculateFaceLocations = (data) => {
     const clarifaiFaces = data.outputs[0].data.regions;
@@ -71,10 +57,6 @@ class App extends Component {
       faceBoxesArray.push(boxObject);
     }
     return faceBoxesArray;
-  };
-
-  displayFaceBox = (box) => {
-    this.setState({ box: box });
   };
 
   displayFaceBoxes = (boxes) => {
@@ -123,7 +105,7 @@ class App extends Component {
             <FaceRecognition imageURL={imageURL} boxes={boxes} />
           </div>
         ) : route === 'login' || route === 'logout' ? (
-          <Signin onRouteChange={this.onRouteChange} />
+          <Login onRouteChange={this.onRouteChange} />
         ) : (
           <Register onRouteChange={this.onRouteChange} />
         )}

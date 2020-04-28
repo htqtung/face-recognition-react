@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Signin = ({ onRouteChange }) => {
+const Login = ({ onRouteChange }) => {
   return (
     <article className='br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-1 mw6 shadow-5 center'>
       <div className='pa4'>
         <div className='measure black'>
-          <fieldset id='sign_in' className='ba b--transparent ph0 mh0'>
+          <fieldset id='login' className='ba b--transparent ph0 mh0'>
             <legend className='f2 fw6 ph0 mh0'>LOGIN</legend>
             <div className='mt3'>
               <label className='db fw6 lh-copy f6' htmlFor='email-address'>
@@ -51,4 +51,4 @@ const Signin = ({ onRouteChange }) => {
   );
 };
 
-export default Signin;
+export default Login;
