@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import useTheme from '../../hooks/useTheme/useTheme';
 
 const Navigation = () => {
-  const [darkModeEnabled, setDarkModeEnabled] = useState(false);
+  const [darkModeEnabled, setDarkModeEnabled] = useState(true);
   useTheme(darkModeEnabled ? 'dark' : 'light');
   return (
     <nav

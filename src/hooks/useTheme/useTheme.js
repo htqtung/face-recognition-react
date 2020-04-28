@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const useTheme = (selectedTheme) => {
+const useTheme = (selectedTheme = 'dark') => {
   useEffect(() => {
     document.documentElement.className = selectedTheme;
   }, [selectedTheme]);
