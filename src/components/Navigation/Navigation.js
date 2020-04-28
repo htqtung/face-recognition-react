@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Logo from '../Logo/Logo';
 import useTheme from '../../hooks/useTheme/useTheme';
 
 const Navigation = ({ onRouteChange, isLoggedIn }) => {
@@ -11,6 +12,7 @@ const Navigation = ({ onRouteChange, isLoggedIn }) => {
         justifyContent: 'flex-end',
         alignItems: 'center',
       }}>
+      <Logo />
       <label htmlFor='theme-toggler'>
         <input
           id='theme-toggler'

@@ -2,41 +2,104 @@
   --light-text-color: black;
   --light-background-color-1: #758ef2;
   --light-background-color-2: #1bea4b;
+  --light-highlight: #f2f2f2;
   --dark-text-color: white;
   --dark-background-color-1: #2241bd;
   --dark-background-color-2: #047828;
+  --dark-highlight: #000;
 }
 
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-.dark {
-  background: linear-gradient(
-    89deg,
-    var(--dark-background-color-1) 0%,
-    var(--dark-background-color-2) 100%
-  );
-  color: var(--dark-text-color);
-}
-
-.light {
+  transition: background 0.2s linear;
   background: linear-gradient(
     89deg,
     var(--light-background-color-1) 0%,
     var(--light-background-color-2) 100%
   );
   color: var(--light-text-color);
+  border-color: var(--light-text-color);
+  height: 100vh;
+}
+
+body input {
+  border-color: var(--light-text-color);
+  /* background-color: var(--light-highlight); */
+}
+
+body input:hover {
+  background-color: var(--light-highlight);
+}
+
+body input:focus {
+  background-color: var(--light-highlight);
+  color: var(--light-text-color);
+}
+
+body .detect-button {
+  background-color: var(--light-background-color-2);
+  color: var(--light-text-color);
+}
+
+body .detect-button:hover {
+  background-color: var(--light-background-color-1);
+}
+
+body .detect-input {
+  background-color: var(--light-highlight);
+}
+
+body.dark {
+  background: linear-gradient(
+    89deg,
+    var(--dark-background-color-1) 0%,
+    var(--dark-background-color-2) 100%
+  );
+  color: var(--dark-text-color);
+  border-color: var(--dark-text-color);
+}
+
+body.dark input {
+  color: var(--dark-text-color);
+  border-color: var(--dark-text-color);
+}
+
+body.dark input:hover {
+  background-color: var(--dark-highlight);
+}
+
+body.dark input:focus {
+  background-color: var(--dark-highlight);
+  color: var(--dark-text-color);
+}
+
+body.dark .detect-button {
+  background-color: var(--dark-background-color-2);
+  color: var(--dark-text-color);
+}
+
+body.dark .detect-button:hover {
+  background-color: var(--dark-background-color-1);
+}
+
+body.dark .detect-input {
+  background-color: var(--dark-highlight);
+}
+
+body.dark label {
+  color: var(--dark-text-color);
+}
+
+body.dark legend {
+  color: var(--dark-text-color);
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 button {

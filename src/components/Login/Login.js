@@ -2,9 +2,9 @@ import React from 'react';
 
 const Login = ({ onRouteChange }) => {
   return (
-    <article className='br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-1 mw6 shadow-5 center'>
+    <article className='br3 ba b--black-10 mv4 w-100 w-50-m w-25-1 mw6 shadow-5 center'>
       <div className='pa4'>
-        <div className='measure black'>
+        <div className='measure'>
           <fieldset id='login' className='ba b--transparent ph0 mh0'>
             <legend className='f2 fw6 ph0 mh0'>LOGIN</legend>
             <div className='mt3'>
@@ -12,7 +12,7 @@ const Login = ({ onRouteChange }) => {
                 Email
               </label>
               <input
-                className='pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                className='pa2 input-reset ba bg-transparent w-100'
                 type='email'
                 name='email-address'
                 id='email-address'
@@ -23,7 +23,7 @@ const Login = ({ onRouteChange }) => {
                 Password
               </label>
               <input
-                className='b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100'
+                className='b pa2 input-reset ba bg-transparent w-100'
                 type='password'
                 name='password'
                 id='password'
@@ -32,7 +32,7 @@ const Login = ({ onRouteChange }) => {
           </fieldset>
           <div className=''>
             <input
-              className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib'
+              className='b ph3 pv2 input-reset ba bg-transparent grow pointer f6 dib'
               type='submit'
               value='Login'
               onClick={() => onRouteChange('home')}
