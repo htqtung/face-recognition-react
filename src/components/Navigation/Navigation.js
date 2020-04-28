@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import useTheme from '../../hooks/useTheme/useTheme';
 
-const Navigation = () => {
+const Navigation = ({ onRouteChange, isLoggedIn }) => {
   const [darkModeEnabled, setDarkModeEnabled] = useState(true);
   useTheme(darkModeEnabled ? 'dark' : 'light');
   return (
@@ -20,7 +20,26 @@ const Navigation = () => {
         />
         {'Dark Mode'}
       </label>
-      <p className='f3 link dim underline pa3 pointer'>Sign Out</p>
+      {isLoggedIn === true ? (
+        <p
+          className='f3 link dim underline pa3 pointer'
+          onClick={() => onRouteChange('logout')}>
+          Log Out
+        </p>
+      ) : (
+        <>
+          <p
+            className='f3 link dim underline pa3 pointer'
+            onClick={() => onRouteChange('login')}>
+            Login
+          </p>
+          <p
+            className='f3 link dim underline pa3 pointer'
+            onClick={() => onRouteChange('register')}>
+            Register
+          </p>
+        </>
+      )}
     </nav>
   );
 };
