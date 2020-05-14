@@ -24,19 +24,19 @@ const Navigation = ({ onRouteChange, isLoggedIn }) => {
       </label>
       {isLoggedIn === true ? (
         <p
-          className='f3 link dim underline pa3 pointer'
+          className='f4 link dim underline pa3 pointer'
           onClick={() => onRouteChange('logout')}>
           Log Out
         </p>
       ) : (
         <>
           <p
-            className='f3 link dim underline pa3 pointer'
+            className='f4 link dim underline pa3 pointer'
             onClick={() => onRouteChange('login')}>
             Login
           </p>
           <p
-            className='f3 link dim underline pa3 pointer'
+            className='f4 link dim underline pa3 pointer'
             onClick={() => onRouteChange('register')}>
             Register
           </p>

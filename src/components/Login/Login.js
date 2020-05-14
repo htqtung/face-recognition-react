@@ -40,7 +40,7 @@ const Login = ({ onRouteChange }) => {
           </div>
           <div className='lh-copy mt3'>
             <p
-              className='f6 link dim db pointer'
+              className='f6 link glow db pointer'
               onClick={() => onRouteChange('register')}>
               Register
             </p>

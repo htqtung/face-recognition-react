@@ -15,12 +15,12 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background 0.2s linear;
   background: linear-gradient(
     89deg,
     var(--light-background-color-1) 0%,
     var(--light-background-color-2) 100%
   );
+  transition: background 0.2s linear;
   color: var(--light-text-color);
   border-color: var(--light-text-color);
   height: 100vh;
@@ -29,12 +29,10 @@ body {
 body input {
   border-color: var(--light-text-color);
   /* background-color: var(--light-highlight); */
+  border-radius: 3px;
 }
 
-body input:hover {
-  background-color: var(--light-highlight);
-}
-
+body input:hover,
 body input:focus {
   background-color: var(--light-highlight);
   color: var(--light-text-color);
@@ -45,7 +43,8 @@ body .detect-button {
   color: var(--light-text-color);
 }
 
-body .detect-button:hover {
+body .detect-button:hover,
+body .detect-button:active {
   background-color: var(--light-background-color-1);
 }
 
@@ -68,10 +67,7 @@ body.dark input {
   border-color: var(--dark-text-color);
 }
 
-body.dark input:hover {
-  background-color: var(--dark-highlight);
-}
-
+body.dark input:hover,
 body.dark input:focus {
   background-color: var(--dark-highlight);
   color: var(--dark-text-color);
@@ -90,10 +86,7 @@ body.dark .detect-input {
   background-color: var(--dark-highlight);
 }
 
-body.dark label {
-  color: var(--dark-text-color);
-}
-
+body.dark label,
 body.dark legend {
   color: var(--dark-text-color);
 }
@@ -104,4 +97,19 @@ code {
 
 button {
   cursor: pointer;
+}
+
+/*
+
+  Animate opacity to 100% on hover by adding the glow class.
+
+*/
+.glow {
+  opacity: 0.5;
+  transition: opacity 0.15s ease-in;
+}
+.glow:hover,
+.glow:focus {
+  opacity: 1;
+  transition: opacity 0.15s ease-in;
 }
