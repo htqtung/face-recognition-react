@@ -37,8 +37,27 @@ class App extends Component {
       boxes: [],
       route: 'login',
       isLoggedIn: false,
+      user: {
+        id: '',
+        name: '',
+        email: '',
+        entries: 0,
+        joined: '',
+      },
     };
   }
+
+  loadUser = (data) => {
+    this.setState({
+      user: {
+        id: data.id,
+        name: data.name,
+        email: data.email,
+        entries: data.entries,
+        joined: data.joined,
+      },
+    });
+  };
 
   calculateFaceLocations = (data) => {
     const clarifaiFaces = data.outputs[0].data.regions;
@@ -69,13 +88,22 @@ class App extends Component {
     });
   };
 
-  onButtonSubmit = () => {
+  onPictureSubmit = () => {
     this.setState({ imageURL: this.state.input });
     app.models
       .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
-      .then((response) =>
-        this.displayFaceBoxes(this.calculateFaceLocations(response))
-      )
+      .then((response) => {
+        if (response) {
+          fetch('http://localhost:3000/image', {
+            method: 'put',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              id: this.state.user.id,
+            }),
+          });
+          this.displayFaceBoxes(this.calculateFaceLocations(response));
+        }
+      })
       .catch((error) => console.log(error));
   };
 
@@ -97,17 +125,17 @@ class App extends Component {
         {route === 'home' ? (
           <div>
             {/* <Logo /> */}
-            <Rank />
+            <Rank name={this.state.user.name} entries={this.state.user.entries} />
             <ImageLinkForm
               onInputChange={this.onInputChange}
-              onButtonSubmit={this.onButtonSubmit}
+              onButtonSubmit={this.onPictureSubmit}
             />
             <FaceRecognition imageURL={imageURL} boxes={boxes} />
           </div>
         ) : route === 'login' || route === 'logout' ? (
-          <Login onRouteChange={this.onRouteChange} />
+          <Login onRouteChange={this.onRouteChange} loadUser={this.loadUser} />
         ) : (
-          <Register onRouteChange={this.onRouteChange} />
+          <Register onRouteChange={this.onRouteChange} loadUser={this.loadUser} />
         )}
       </div>
     );
