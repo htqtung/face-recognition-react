@@ -6,17 +6,21 @@ const FaceRecognition = ({ imageURL, boxes }) => {
     <div className='center ma'>
       <div className='absolute mt2'>
         <img id='inputImage' src={imageURL} alt='' />
-        {boxes.map((box, index) => (
-          <div
-            className='bounding-box'
-            key={index}
-            style={{
-              top: box.topRow,
-              right: box.rightCol,
-              bottom: box.bottomRow,
-              left: box.leftCol,
-            }}></div>
-        ))}
+        {boxes.length > 0 || imageURL === '' ? (
+          boxes.map((box, index) => (
+            <div
+              className='bounding-box'
+              key={index}
+              style={{
+                top: box.topRow,
+                right: box.rightCol,
+                bottom: box.bottomRow,
+                left: box.leftCol,
+              }}></div>
+          ))
+        ) : (
+          <div>No face detected</div>
+        )}
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { API_URI } from '../../constants/api';
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -18,7 +18,7 @@ export default class Login extends React.Component {
   };
 
   onSubmitLogin = () => {
-    fetch('http://localhost:3000/login', {
+    fetch(`${API_URI}/login`, {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

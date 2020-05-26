@@ -7,6 +7,7 @@ import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Particles from 'react-particles-js';
+import { API_URI } from './constants/api';
 
 const particlesOptions = {
   particles: {
@@ -52,22 +53,27 @@ class App extends Component {
   };
 
   calculateFaceLocations = (data) => {
-    const clarifaiFaces = data.outputs[0].data.regions;
-    const image = document.getElementById('inputImage');
-    const width = Number(image.width);
-    const height = Number(image.height);
-    const faceBoxesArray = [];
-    for (const face of clarifaiFaces) {
-      const clarifaiFace = face.region_info.bounding_box;
-      const boxObject = {
-        leftCol: clarifaiFace.left_col * width,
-        topRow: clarifaiFace.top_row * height,
-        rightCol: width - clarifaiFace.right_col * width,
-        bottomRow: height - clarifaiFace.bottom_row * height,
-      };
-      faceBoxesArray.push(boxObject);
+    if (data !== 'Unable to retrieve data') {
+      const clarifaiFaces = data.outputs[0].data.regions;
+      const image = document.getElementById('inputImage');
+      const width = Number(image.width);
+      const height = Number(image.height);
+      const faceBoxesArray = [];
+      for (const face of clarifaiFaces) {
+        const clarifaiFace = face.region_info.bounding_box;
+        const boxObject = {
+          leftCol: clarifaiFace.left_col * width,
+          topRow: clarifaiFace.top_row * height,
+          rightCol: width - clarifaiFace.right_col * width,
+          bottomRow: height - clarifaiFace.bottom_row * height,
+        };
+        faceBoxesArray.push(boxObject);
+      }
+      return faceBoxesArray;
+    } else {
+      // handle no face in picture
+      return [];
     }
-    return faceBoxesArray;
   };
 
   displayFaceBoxes = (boxes) => {
@@ -82,7 +88,7 @@ class App extends Component {
 
   onPictureSubmit = () => {
     this.setState({ imageURL: this.state.input });
-    fetch('http://localhost:3000/imageurl', {
+    fetch(`${API_URI}/imageurl`, {
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -92,7 +98,7 @@ class App extends Component {
       .then((response) => response.json())
       .then((response) => {
         if (response) {
-          fetch('http://localhost:3000/image', {
+          fetch(`${API_URI}/image`, {
             method: 'put',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
